@@ -72,7 +72,9 @@ ssystemctl set-default graphical.target
 # Download, compile, and install DWM
 cd $builddir
 git clone https://github.com/Apelesko/dwm-config
-cd dwm-config
+chown -R $username:$username dwm-config
+mv dwm-config ..
+cd ../dwm-config
 make install
 
 # Beautiful bash
