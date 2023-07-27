@@ -42,12 +42,37 @@ echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=
 nala update
 nala install brave-browser -y
 
+# Install sublime-text
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/sublimehq-archive.gpg > /dev/null
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+nala update
+nala install sublime-text
+
+# Configure lightdm
+## Create a dwm.desktop session in /usr/share/xsessions
+cd /usr/share/xsessions
+touch dwm.desktop
+echo [Desktop Entry] >> dwm.desktop
+echo Encoding=UTF-8 >> dwm.desktop
+echo Name=dwm >> dwm.desktop
+echo Comment=Dynamic Window Manager >> dwm.desktop
+echo Exec=dwm >> dwm.desktop
+echo Icon=dwm >> dwm.desktop
+echo Type=XSession >> dwm.desktop
+
+## Copy existing lighdm.conf file to /etc/lightdm
+cd /etc/lightdm
+mv lightdm.conf lightdm.conf.bak
+mv /home/$username/.config/lightdm/lightdm.conf /etc/lightdm
+
 # Enable graphical login and change target from CLI to GUI
 systemctl enable lightdm
 ssystemctl set-default graphical.target
 
 # Download, compile, and install DWM
-
+git clone https://github.com/Apelesko/dwm-config
+cd dwm-config
+make install
 
 # Beautiful bash
 #git clone https://github.com/ChrisTitusTech/mybash
