@@ -31,9 +31,9 @@ chown -R $username:$username /home/$username
 
 # Installing Essential Programs 
 #nala install feh kitty rofi picom thunar nitrogen lxpolkit x11-xserver-utils unzip wget pulseaudio pavucontrol build-essential libx11-dev libxft-dev libxinerama-dev -y
-nala install feh kitty rofi picom thunar lightdm lxpolkit x11-xserver-utils unzip wget pulseaudio pavucontrol build-essential libx11-dev libx11-xcb-dev libxft-dev libxinerama-dev libxcb-xinerama0-dev libxcb-res0-dev -y
+nala install feh kitty rofi picom thunar lightdm lxpolkit x11-xserver-utils unzip wget pulseaudio pavucontrol build-essential libx11-dev libx11-xcb-dev libxft-dev libxinerama-dev libxcb-xinerama0-dev libxcb-res0-dev zram-tools-y
 # Installing Other less important Programs
-nala install neofetch lxappearance -y
+nala install neofetch lxappearance tldr -y
 
 # Install brave-browser
 nala install apt-transport-https curl -y
@@ -46,7 +46,7 @@ nala install brave-browser -y
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/sublimehq-archive.gpg > /dev/null
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 nala update
-nala install sublime-text
+nala install sublime-text -y
 
 # Configure lightdm
 ## Create a dwm.desktop session in /usr/share/xsessions
@@ -70,6 +70,7 @@ systemctl enable lightdm
 ssystemctl set-default graphical.target
 
 # Download, compile, and install DWM
+cd $builddir
 git clone https://github.com/Apelesko/dwm-config
 cd dwm-config
 make install
