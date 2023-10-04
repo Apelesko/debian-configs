@@ -75,7 +75,7 @@ git clone https://github.com/Apelesko/dwm-config
 chown -R $username:$username dwm-config
 mv dwm-config ..
 cd ../dwm-config
-make install
+#make install
 
 # Beautiful bash
 #git clone https://github.com/ChrisTitusTech/mybash
