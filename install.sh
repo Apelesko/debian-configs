@@ -31,7 +31,7 @@ chown -R $username:$username /home/$username
 
 # Installing Essential Programs 
 #nala install feh kitty rofi picom thunar nitrogen lxpolkit x11-xserver-utils unzip wget pulseaudio pavucontrol build-essential libx11-dev libxft-dev libxinerama-dev -y
-nala install feh kitty rofi picom thunar lightdm lxpolkit x11-xserver-utils unzip wget pipewire pavucontrol build-essential libx11-dev libx11-xcb-dev libxft-dev libxinerama-dev libxcb-xinerama0-dev libxcb-res0-dev zram-tools -y
+nala install linux-headers-$(uname -r) feh kitty dmenu arandr ufw picom thunar lightdm lxpolkit x11-xserver-utils unzip wget pipewire pavucontrol build-essential libx11-dev libx11-xcb-dev libxft-dev libxinerama-dev libxcb-xinerama0-dev libxcb-res0-dev -y
 # Installing Other less important Programs
 nala install neofetch lxappearance tldr -y
 
@@ -68,6 +68,9 @@ mv /home/$username/.config/lightdm/lightdm.conf /etc/lightdm
 # Enable graphical login and change target from CLI to GUI
 systemctl enable lightdm
 systemctl set-default graphical.target
+
+#Enable ufw
+ufw enable
 
 # Download, compile, and install DWM
 cd $builddir
