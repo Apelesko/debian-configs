@@ -48,19 +48,7 @@ echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sou
 nala update
 nala install sublime-text -y
 
-# Configure lightdm
-## Create a dwm.desktop session in /usr/share/xsessions
-cd /usr/share/xsessions
-touch dwm.desktop
-echo [Desktop Entry] >> dwm.desktop
-echo Encoding=UTF-8 >> dwm.desktop
-echo Name=dwm >> dwm.desktop
-echo Comment=Dynamic Window Manager >> dwm.desktop
-echo Exec=dwm >> dwm.desktop
-echo Icon=dwm >> dwm.desktop
-echo Type=XSession >> dwm.desktop
-
-## Copy existing lighdm.conf file to /etc/lightdm
+## Copy existing lightdm.conf file to /etc/lightdm
 cd /etc/lightdm
 mv lightdm.conf lightdm.conf.bak
 mv /home/$username/.config/lightdm/lightdm.conf /etc/lightdm
@@ -79,6 +67,9 @@ chown -R $username:$username dwm-config
 mv dwm-config ..
 cd ../dwm-config
 make install
+
+# Configure lightdm to use dwm
+cp dwm.desktop /usr/share/xsessions
 
 # Beautiful bash
 #git clone https://github.com/ChrisTitusTech/mybash
