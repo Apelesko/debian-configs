@@ -35,6 +35,16 @@ nala install feh kitty dmenu arandr ufw picom thunar lightdm lxpolkit x11-xserve
 # Installing Other less important Programs
 nala install neofetch lxappearance tldr -y
 
+# Download and install necessary fonts
+nala install fonts-fontawesome -y
+mkdir -p /home/$username/.local/share/fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip
+unzip Meslo.zip -d /home/$username/.local/share/fonts
+
+# Reload fonts
+fc-cache -vf
+rm ./Meslo.zip
+
 # Install brave-browser
 nala install apt-transport-https curl -y
 curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
