@@ -39,13 +39,13 @@ nala install feh kitty dmenu arandr ufw picom thunar lightdm lxpolkit x11-xserve
 nala install neofetch lxappearance tldr -y
 
 # Download and install necessary fonts
-nala install fonts-fontawesome -y
+nala install fonts-font-awesome -y
 mkdir -p /home/$username/.local/share/fonts
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
 unzip Meslo.zip -d /home/$username/.local/share/fonts
 
 # Reload fonts
-fc-cache -vf
+fc-cache -v -f
 rm ./Meslo.zip
 
 # Install brave-browser
