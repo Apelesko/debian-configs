@@ -19,6 +19,9 @@ apt install nala -y
 # Use nala
 bash scripts/usenala
 
+# Create autologin group for tty
+usermod -aG autologin $username
+
 # Making .config and Moving config files and background to Pictures
 cd $builddir
 mkdir -p /home/$username/.config
