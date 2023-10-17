@@ -38,6 +38,7 @@ nala install neofetch lxappearance tldr -y
 # Download and install necessary fonts
 nala install fonts-font-awesome -y
 mkdir -p /home/$username/.local/share/fonts
+cp -R fonts/* /home/$username/.local/share/fonts
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
 unzip Meslo.zip -d /home/$username/.local/share/fonts
 
@@ -46,11 +47,17 @@ fc-cache -v -f
 rm ./Meslo.zip
 
 # Install brave-browser
-nala install apt-transport-https curl -y
-curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | tee /etc/apt/sources.list.d/brave-browser-release.list
+#nala install apt-transport-https curl -y
+#curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+#echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | tee /etc/apt/sources.list.d/brave-browser-release.list
+#nala update
+#nala install brave-browser -y
+
+# Install thorium-browser
+wget https://dl.thorium.rocks/debian/dists/stable/thorium.list
+mv thorium.list /etc/apt/sources.list.d/
 nala update
-nala install brave-browser -y
+nala install thorium-browser -y
 
 # Install sublime-text
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/sublimehq-archive.gpg > /dev/null
@@ -80,6 +87,7 @@ make install
 
 # Configure lightdm to use dwm
 cp dwm.desktop /usr/share/xsessions
+rm /usr/share/xsessions/lightdm-xsession.desktop
 
 # Beautiful bash
 #git clone https://github.com/ChrisTitusTech/mybash
