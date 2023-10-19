@@ -35,6 +35,14 @@ nala install feh kitty dmenu arandr ufw picom thunar lightdm lxpolkit x11-xserve
 # Installing Other less important Programs
 nala install neofetch lxappearance tldr -y
 
+# Install Github-cli
+type -p curl >/dev/null || (nala update && nala install curl -y)
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+&& chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+&& nala update \
+&& nala install gh -y
+
 # Download and install necessary fonts
 nala install fonts-font-awesome -y
 mkdir -p /home/$username/.local/share/fonts
@@ -74,9 +82,6 @@ mv /home/$username/.config/lightdm/lightdm.conf /etc/lightdm
 systemctl enable lightdm
 systemctl set-default graphical.target
 
-#Enable ufw
-ufw enable
-
 # Download, compile, and install DWM
 cd $builddir
 git clone https://github.com/Apelesko/dwm-config
@@ -88,6 +93,9 @@ make install
 # Configure lightdm to use dwm
 cp dwm.desktop /usr/share/xsessions
 rm /usr/share/xsessions/lightdm-xsession.desktop
+
+#Enable ufw
+ufw enable
 
 # Beautiful bash
 #git clone https://github.com/ChrisTitusTech/mybash
