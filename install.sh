@@ -94,6 +94,14 @@ make install
 cp dwm.desktop /usr/share/xsessions
 rm /usr/share/xsessions/lightdm-xsession.desktop
 
+# Set grub theme to CyberRe
+cd $builddir
+git clone https://github.com/Apelesko/grub-theme
+chown -R $username:$username grub-theme
+mv grub-theme ..
+cd ../grub-theme
+./install.sh
+
 #Enable ufw
 ufw enable
 
