@@ -37,7 +37,7 @@ nala install feh kitty dmenu arandr ufw picom thunar lightdm lxpolkit x11-xserve
 nala install neofetch lxappearance tldr -y
 
 #Installing other programs for laptop
-#nala install bluez bluez-firmware libspa-0.2-bluetooth network-manager broadcom-sta-dkms -y
+#nala install xbacklight bluez bluez-firmware libspa-0.2-bluetooth network-manager broadcom-sta-dkms -y
 
 # Install Github-cli
 type -p curl >/dev/null || (nala update && nala install curl -y)
