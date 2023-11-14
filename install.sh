@@ -32,8 +32,12 @@ chown -R $username:$username /home/$username
 # Installing Essential Programs 
 #nala install feh kitty rofi picom thunar nitrogen lxpolkit x11-xserver-utils unzip wget pulseaudio pavucontrol build-essential libx11-dev libxft-dev libxinerama-dev -y
 nala install feh kitty dmenu arandr ufw picom thunar lightdm lxpolkit x11-xserver-utils unzip wget pipewire pavucontrol build-essential libx11-dev libx11-xcb-dev libxft-dev libxinerama-dev libxcb-xinerama0-dev libxcb-res0-dev -y
+
 # Installing Other less important Programs
 nala install neofetch lxappearance tldr -y
+
+#Installing other programs for laptop
+#nala install bluez bluez-firmware libspa-0.2-bluetooth network-manager broadcom-sta-dkms -y
 
 # Install Github-cli
 type -p curl >/dev/null || (nala update && nala install curl -y)
