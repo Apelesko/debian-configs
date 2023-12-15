@@ -65,11 +65,11 @@ rm ./Meslo.zip
 #nala update
 #nala install brave-browser -y
 
-# Install thorium-browser
-wget https://dl.thorium.rocks/debian/dists/stable/thorium.list
-mv thorium.list /etc/apt/sources.list.d/
+# Install floorp browser
+curl -fsSL https://ppa.ablaze.one/KEY.gpg | gpg --dearmor -o /usr/share/keyrings/Floorp.gpg
+curl -sS --compressed -o /etc/apt/sources.list.d/Floorp.list 'https://ppa.ablaze.one/Floorp.list'
 nala update
-nala install thorium-browser -y
+nala install floorp -y
 
 # Install sublime-text
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/sublimehq-archive.gpg > /dev/null
